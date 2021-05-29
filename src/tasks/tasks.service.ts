@@ -23,6 +23,13 @@ export class TasksService {
     return this.taskRepository.createTask(createTaskDto);
   }
 
+  async updateTaskStatus(id: string, status: TaskStatus): Promise<Task> {
+    const task = await this.getTaskById(id);
+    task.status = status;
+    await this.taskRepository.save(task);
+    return task;
+  }
+
   async deleteTask(id: string): Promise<void> {
     const result = await this.taskRepository.delete(id);
 
