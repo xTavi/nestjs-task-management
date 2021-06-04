@@ -13,7 +13,6 @@ export class AuthService {
   ) {}
 
   public signUp(authCredentialsDto: AuthCredentialsDto): Promise<void> {
-    console.log(authCredentialsDto);
     return this.userRepository.createUser(authCredentialsDto);
   }
 
