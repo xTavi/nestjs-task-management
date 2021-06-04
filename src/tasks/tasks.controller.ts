@@ -35,8 +35,11 @@ export class TasksController {
   }
 
   @Get('/:id')
-  public async getTaskById(@Param('id') taskId: string): Promise<Task> {
-    return this.tasksService.getTaskById(taskId);
+  public async getTaskById(
+    @Param('id') taskId: string,
+    @GetUser() user: User,
+  ): Promise<Task> {
+    return this.tasksService.getTaskById(taskId, user);
   }
 
   @Post()
@@ -52,8 +55,9 @@ export class TasksController {
   public updateTaskStatus(
     @Param('id') taskId: string,
     @Body('status', TaskStatusValidationPipe) status: TaskStatus,
+    @GetUser() user: User,
   ): Promise<Task> {
-    return this.tasksService.updateTaskStatus(taskId, status);
+    return this.tasksService.updateTaskStatus(taskId, status, user);
   }
 
   @Delete('/:id')
