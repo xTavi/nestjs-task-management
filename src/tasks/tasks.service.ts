@@ -13,6 +13,12 @@ export class TasksService {
     @InjectRepository(TaskRepository) private taskRepository: TaskRepository,
   ) {}
 
+  /**
+   * This is used to get all tasks
+   * @param filterDto - Is used
+   * @param user
+   * @returns
+   */
   public async getTasks(
     filterDto: GetTasksFilterDto,
     user: User,
